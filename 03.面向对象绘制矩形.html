@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象绘制矩形</title>
+</head>
+
+<body>
+    <div id="app" style="position:relative"></div>
+</body>
+
+</html>
+<script>
+    window.onload = function () {
+        /**
+         *   绘制矩形
+         */
+
+        function React(options) {
+            this._init(options);
+        }
+
+        React.prototype = {
+            // 属性
+            _init:function(options){
+                // 父标签
+                this.parentId = options.parentId;
+                // 位置
+                this.left = options.left || 0; //左边距
+                this.top = options.top || 0; //上边距
+                // 属性
+                this.width = options.width || 50; //宽
+                this.height = options.height || 50; //高
+
+                this.border = options.border || "none"; //线
+                this.bgColor = options.bgColor || "pink"; //背景颜色
+                this.borderRadius = options.borderRadius || 0; //背景颜色
+               
+            },
+            // 行为
+            render:function() {
+                // 获取父标签
+                let parentEle = document.getElementById(this.parentId);
+                // 创建矩形标签
+                let reactEle = document.createElement("div");
+
+                // 添加样式
+                reactEle.style.position = "absolute";
+                reactEle.style.left = this.left+"px";
+                reactEle.style.top = this.top+"px";
+                reactEle.style.width = this.width + "px";
+                reactEle.style.height = this.height +"px";
+                reactEle.style.border = this.border;
+                reactEle.style.backgroundColor = this.bgColor;
+                reactEle.style.borderRadius = this.borderRadius;
+             
+
+                // appendChild 在父级最后追加一个子元素 
+                parentEle.appendChild(reactEle); 
+
+            }
+        }
+
+        let react = new React({
+            parentId:"app",
+            left:"300",
+            top:"100",
+            width:"300",
+            height:"300",
+            border:"10px solid red",
+            bgColor:"yellow",
+            borderRadius:"10px"
+        })
+
+        console.log(react);
+
+        react.render();
+
+
+    }
+</script>

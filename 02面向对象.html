@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象简单计算器</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 面向对象三大特性  封装  继承  多态 
+
+    /**
+     * 1.面向过程  (6+6)*2/3 -4
+     */
+
+    function jia(a, b) {
+        return a + b
+    };
+
+    function jian(a, b) {
+        return a - b
+    };
+
+    function cheng(a, b) {
+        return a * b
+    };
+
+    function chu(a, b) {
+        return a / b
+    };
+
+    // jia(6, 6) 6+6
+    // cheng(jia(6, 6), 2)  (6+6)*2
+    // chu(cheng(jia(6, 6), 2), 3)     (6+6)*2/3
+    // jian(chu(cheng(jia(6, 6), 2), 3), 4)   (6+6)*2/3 -4
+    console.log(jian(chu(cheng(jia(6, 6), 2), 3), 4)); // result 4
+</script>
+
+<script>
+    /**
+     * 2. 对象字面量
+     */
+    var Cacalutor = {
+        result: 0,
+        jia(num) {
+            this.result += num;
+        },
+        jian(num) {
+            this.result -= num;
+        },
+        cheng(num) {
+            this.result *= num;
+        },
+        chu(num) {
+            this.result /= num;
+        }
+    }
+    // (6+6)*2/3 -4
+    Cacalutor.jia(6); //6
+    Cacalutor.jia(6); //12
+    Cacalutor.cheng(2); //24
+    Cacalutor.chu(3); //8
+    Cacalutor.jian(4); //4
+
+    console.log(Cacalutor.result);
+</script>
+
+<script>
+    /**
+     * 3. 改造下  采用链式调用 每次操作返回this对象Cacalutor
+     */
+    var Cacalutor2 = {
+        result: 0,
+        jia(num) {
+            this.result += num;
+            return this
+        },
+        jian(num) {
+            this.result -= num;
+            return this
+        },
+        cheng(num) {
+            this.result *= num;
+            return this
+        },
+        chu(num) {
+            this.result /= num;
+            return this
+        },
+        log(){
+            console.log(this.result);
+            return this
+        },
+        clean(){
+            this.result = 0;
+            return this
+        }
+    }
+
+    Cacalutor2.jia(6).jia(6).cheng(2).chu(3).jian(4).log();
+    Cacalutor2.clean().log();
+    
+    
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = function(){
+            function Person(name, age){
+                this.name = name;
+                this.age = age;
+
+                // return this
+                // return 123
+                // return "hello"
+                // 不写
+                //  都是返回 创建的新对象
+
+
+                // return {}
+                // return new Date()
+                // 如果return对象  则返回新对象
+            }
+            var p = new Person("Lidei", 20);
+            console.log(p );
+
+
+            function Dog(option){
+                this.name = option.name;
+                this.age = option.age;
+                this.eat = function(something){
+                    console.log(this.name + "eating"+something);
+                }
+            }
+            let dog1 = new Dog({name:"ly", age: 25})
+            console.log(dog1);
+        }
+    </script>
+</body>
+</html>
